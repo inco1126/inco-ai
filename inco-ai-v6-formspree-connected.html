@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inco AI | UK Master Application AI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #070707;
+      color: #f5f1e8;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.55);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(212,175,55,0.12);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #d4af37;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      color: #d8d2c0;
+      margin-left: 24px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 90px 8% 70px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(212,175,55,0.45);
+      border-radius: 999px;
+      color: #d4af37;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 56px;
+      line-height: 1.08;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: #d4af37;
+    }
+
+    .hero p {
+      color: #c8c0ad;
+      font-size: 18px;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    button, .btn {
+      border: none;
+      padding: 15px 24px;
+      border-radius: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #d4af37, #f1d985);
+      color: #111;
+    }
+
+    .secondary {
+      background: transparent;
+      color: #f5f1e8;
+      border: 1px solid rgba(245,241,232,0.25);
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #111, #0a0a0a);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.12);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .stat strong {
+      color: #d4af37;
+      font-size: 28px;
+      display: block;
+    }
+
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: #b9b09e;
+      margin-bottom: 34px;
+      max-width: 720px;
+    }
+
+    .form-box {
+      background: #101010;
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 26px;
+      padding: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      color: #d7cfbc;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #070707;
+      color: #f5f1e8;
+      outline: none;
+      font-size: 16px;
+    }
+
+    .full {
+      grid-column: span 2;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .disclaimer {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.18);
+      color: #b9b09e;
+      font-size: 13px;
+    }
+
+    .lead-box {
+      display: none;
+      margin-top: 24px;
+      background: #101010;
+      border: 1px solid rgba(212,175,55,0.22);
+      border-radius: 26px;
+      padding: 26px;
+    }
+
+    .lead-box h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .lead-box p {
+      color: #c8c0ad;
+      margin-bottom: 20px;
+    }
+
+    .fit-badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(212,175,55,0.12);
+      border: 1px solid rgba(212,175,55,0.25);
+      color: #d4af37;
+      font-size: 12px;
+    }
+
+
+    .results {
+      display: none;
+      margin-top: 30px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .result-card {
+      background: #0b0b0b;
+      border: 1px solid rgba(212,175,55,0.22);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .result-card h3 {
+      color: #d4af37;
+      margin-bottom: 14px;
+    }
+
+    .uni {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .uni:last-child {
+      border-bottom: none;
+    }
+
+    .uni strong {
+      display: block;
+    }
+
+    .uni small {
+      color: #aaa08c;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .case-card {
+      background: linear-gradient(145deg, #111, #0b0b0b);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 24px;
+      padding: 24px;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .case-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(212,175,55,0.45);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      
+    }
+    
+    .case-card::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: rgba(212,175,55,0.08);
+      border-radius: 50%;
+      top: -40px;
+      right: -40px;
+    }
+
+    .case-card h3 {
+      color: #d4af37;
+      margin-bottom: 10px;
+    }
+
+    .case-card p {
+      color: #c3baa5;
+      font-size: 15px;
+    }
+    
+    .summary-box {
+      display: none;
+      margin-top: 24px;
+      background: linear-gradient(145deg, #121212, #080808);
+      border: 1px solid rgba(212,175,55,0.25);
+      border-radius: 24px;
+      padding: 26px;
+    }
+    
+    .summary-box h3 {
+      color: #d4af37;
+      margin-bottom: 12px;
+    }
+    
+    .summary-box p {
+      color: #c8c0ad;
+    }
+    
+    .summary-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    
+    .note {
+     margin-top: 18px;
+     font-size: 13px;
+     color: #8f8674 !important;
+    }
+    .contact {
+      background: linear-gradient(135deg, #111, #080808);
+      border-top: 1px solid rgba(212,175,55,0.18);
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    footer {
+      padding: 26px 8%;
+      color: #8f8674;
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 60px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .form-grid,
+      .results,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: span 1;
+      }
+
+      .buttons .btn,
+      .form-box button,
+      .lead-box button,
+      .contact button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Inco AI</div>
+  <nav>
+    <a href="#tool">AI择校</a>
+    <a href="#cases">成功案例</a>
+    <a href="#contact">联系咨询</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="badge">UK Master Application AI · 英国硕士智能择校</div>
+    <h1>为中国学生打造的<br><span>英国硕士 AI 选校引擎</span></h1>
+    <p>
+      输入你的 GPA、雅思、本科背景和预算，Inco AI 将为你生成冲刺、匹配、保底三档英国硕士申请方案。
+      专注中国学生英国硕士申请，覆盖 Top-up、本科双非、海外本科、转专业等常见背景。
+    </p>
+    <div class="buttons">
+      <a class="btn primary" href="#tool">免费生成我的选校方案</a>
+      <a class="btn secondary" href="#cases">查看案例</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <h2>AI Recommendation Preview</h2>
+    <p style="color:#b9b09e;margin-top:10px;">
+      不只看排名，更关注 QS、回国认可度、Top-up 友好度、预算、专业匹配和就业方向。
+    </p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <strong>3档</strong>
+        冲刺 / 匹配 / 保底
+      </div>
+      <div class="stat">
+        <strong>UK</strong>
+        英国硕士申请
+      </div>
+      <div class="stat">
+        <strong>Top-up</strong>
+        背景友好分析
+      </div>
+      <div class="stat">
+        <strong>AI</strong>
+        个性化解释
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tool">
+  <h2 class="section-title">AI 择校评估</h2>
+  <p class="section-subtitle">
+    填写基础背景后，系统将生成一版初步选校建议，帮助你快速判断冲刺、匹配和保底定位。
+  </p>
+
+  <div class="form-box">
+    <div class="form-grid">
+      <div>
+        <label>本科院校 / Undergraduate University</label>
+        <input id="university" placeholder="例如 Coventry University" />
+      </div>
+
+      <div>
+        <label>GPA / 均分</label>
+        <input id="gpa" placeholder="例如 68 / 75 / 82" />
+      </div>
+
+      <div>
+        <label>雅思 / IELTS</label>
+        <input id="ielts" placeholder="例如 6.0 / 6.5 / 7.0" />
+      </div>
+
+      <div>
+        <label>申请专业方向 / Major</label>
+        <select id="major">
+          <option>Business / Management</option>
+          <option>Marketing</option>
+          <option>Finance</option>
+          <option>Data / IT</option>
+          <option>Supply Chain</option>
+        </select>
+      </div>
+
+      <div>
+        <label>是否 Top-up 背景</label>
+        <select id="topup">
+          <option>是 / Yes</option>
+          <option>否 / No</option>
+        </select>
+      </div>
+
+      <div>
+        <label>预算 / Budget</label>
+        <select id="budget">
+          <option>£20,000 - £30,000</option>
+          <option>£30,000 - £40,000</option>
+          <option>£40,000+</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>毕业目标 / Future Plan</label>
+        <select id="goal">
+          <option>回国就业 / Return to China</option>
+          <option>留英工作 / Stay in the UK</option>
+          <option>继续读博 / PhD</option>
+          <option>暂不确定 / Not sure</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <button class="primary" onclick="generateResults()">生成选校方案</button>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      本工具结果为 AI 初步评估，仅供申请规划参考，不构成正式录取承诺。实际结果需以学校官网、专业要求、申请材料和当年招生政策为准。
+    </div>
+
+   <div class="results" id="results">
+  <div class="result-card">
+    <h3>冲刺 Reach</h3>
+    <div id="reachList"></div>
+  </div>
+
+  <div class="result-card">
+    <h3>匹配 Match</h3>
+    <div id="matchList"></div>
+  </div>
+
+  <div class="result-card">
+    <h3>保底 Safe</h3>
+    <div id="safeList"></div>
+  </div>
+</div>
+
+<div id="summaryBox" class="summary-box">
+  <h3>你的初步申请策略</h3>
+  <p id="summaryText"></p>
+
+  <div class="summary-actions">
+    <button class="primary" onclick="window.print()">保存 / 截图结果</button>
+    <button class="secondary" onclick="document.getElementById('leadBox').scrollIntoView({ behavior: 'smooth' })">获取完整方案</button>
+  </div>
+
+  <p class="note">
+    当前结果为 AI 初筛建议，不等同于正式录取评估。完整方案需要结合本科院校、专业匹配度、PS/CV、申请时间和学校当年政策。
+  </p>
+</div>
+
+<div id="riskBox" class="summary-box">
+  <h3>AI 风险分析</h3>
+  <div id="riskList"></div>
+</div>
+
+
+<div id="loadingBox" class="summary-box" style="display:none;text-align:center;">
+  <h3>Inco AI 正在分析...</h3>
+  <p style="margin-top:10px;color:#c8c0ad;">
+    正在分析 GPA、IELTS、Top-up 背景、预算和申请匹配度...
+  </p>
+
+  <div style="width:100%;height:10px;background:#1a1a1a;border-radius:999px;margin-top:22px;overflow:hidden;">
+    <div id="loadingBar" style="width:0%;height:100%;background:linear-gradient(90deg,#d4af37,#f1d985);transition:1.5s;"></div>
+  </div>
+</div>
+
+
+<div id="leadBox" class="lead-box">
+  <h3>获取完整申请方案</h3>
+  <p>留下联系方式，我们会根据你的本科院校、专业背景、成绩单和目标方向进一步复核。</p>
+
+  <div class="form-grid">
+    <div>
+      <label>微信号 / WeChat</label>
+      <input id="wechat" placeholder="例如 inco_ai" />
+    </div>
+
+    <div>
+      <label>邮箱 / Email</label>
+      <input id="email" placeholder="例如 name@email.com" />
+    </div>
+
+    <div>
+      <label>预计入学年份 / Intake</label>
+      <select id="intake">
+        <option>2026</option>
+        <option>2027</option>
+        <option>2028</option>
+        <option>暂不确定 / Not sure</option>
+      </select>
+    </div>
+
+    <div>
+      <label>需要的服务 / Support Needed</label>
+      <select id="support">
+        <option>只想选校 / School list only</option>
+        <option>文书修改 / PS & CV support</option>
+        <option>全套申请 / Full application support</option>
+        <option>暂不确定 / Not sure</option>
+      </select>
+    </div>
+
+    <div class="full">
+      <label>补充说明 / Notes</label>
+      <textarea id="notes" placeholder="例如目标学校、目标专业、是否已有成绩单、是否想转专业"></textarea>
+    </div>
+
+    <div class="full">
+      <button class="primary" onclick="submitLead()">提交并获取人工复核</button>
+    </div>
+  </div>
+
+  <p class="note">
+    我们仅将你提交的信息用于申请评估、方案沟通和服务跟进；未经授权，不会向第三方公开你的资料。
+  </p>
+</div>
+
+
+  </div>
+</section>
+
+<section id="cases">
+  <h2 class="section-title">申请背景示例</h2>
+  <p class="section-subtitle">
+    以下为常见申请背景示例，帮助你理解不同分数段和背景下的选校策略。
+  </p>
+
+  <div class="cards">
+    <div class="case-card">
+      <h3>Top-up 背景申请示例</h3>
+      <p>Coventry Top-up，均分 68，目标英国商科硕士。建议采用“少量冲刺 + 主申稳定 + 保底兜底”的组合，重点确认学校是否接受 Top-up 背景。</p>
+    </div>
+
+    <div class="case-card">
+      <h3>双非背景申请示例</h3>
+      <p>国内双非本科，均分 82，雅思 6.5，目标 QS 前100。建议结合专业匹配度冲刺 Glasgow / Southampton / Nottingham 等学校。</p>
+    </div>
+
+    <div class="case-card">
+      <h3>预算敏感型申请示例</h3>
+      <p>预算 £25,000 左右，优先考虑学费和城市生活成本。建议综合考虑 Coventry / Leicester / Portsmouth 等更稳妥的组合。</p>
+    </div>
+  </div>
+</section>
+<section>
+  <h2 class="section-title">申请路径示例</h2>
+  <p class="section-subtitle">
+    以下为示例申请路径，实际方案需结合完整成绩单、专业背景和当年学校要求进一步判断。
+  </p>
+
+  <div class="cards">
+    <div class="case-card">
+      <h3>University of Leeds</h3>
+      <p>MSc International Business</p>
+      <br>
+      <p>背景：Top-up / 均分68 / IELTS 6.5</p>
+      <br>
+      <p style="color:#d4af37;">Strategy Example ✓</p>
+    </div>
+
+    <div class="case-card">
+      <h3>University of Birmingham</h3>
+      <p>MSc Management</p>
+      <br>
+      <p>背景：双非本科 / 均分82</p>
+      <br>
+      <p style="color:#d4af37;">Recommended Path ✓</p>
+    </div>
+
+    <div class="case-card">
+      <h3>University of Nottingham</h3>
+      <p>MSc Marketing</p>
+      <br>
+      <p>背景：商科背景 / 预算 £30k</p>
+      <br>
+      <p style="color:#d4af37;">AI Fit Example ✓</p>
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <h2>获取完整申请分析</h2>
+  <p style="color:#c3baa5;margin-bottom:24px;">
+    提交你的背景信息，获取更完整的学校名单、专业匹配度和申请风险分析。
+  </p>
+  <a class="btn primary" href="#tool">先生成免费评估</a>
+</section>
+
+<footer>
+  © 2026 Inco AI. Built for Chinese students applying for UK master's degrees.
+</footer>
+
+<script>
+  function generateResults() {
+
+    document.getElementById("loadingBar").style.width = "0%";
+    const gpa = Number(document.getElementById("gpa").value);
+    const university = document.getElementById("university").value;
+    const major = document.getElementById("major").value;
+    const topup = document.getElementById("topup").value;
+    const goal = document.getElementById("goal").value;
+    const budget = document.getElementById("budget").value;
+
+    let reach = [];
+    let match = [];
+    let safe = [];
+    let strategy = "";
+    let risks = [];
+
+    if (!gpa || gpa < 40 || gpa > 100) {
+      alert("请输入正确的 GPA / 均分，例如 68、75、82");
+      return;
+    }
+
+    if (gpa >= 80) {
+      reach = [
+        ["University of Warwick", "QS强势，适合高分学生冲刺，商科和WMG认可度高"],
+        ["University of Manchester", "回国认可度强，但竞争激烈"],
+        ["University of Edinburgh", "品牌强，适合追求高QS和名校光环"]
+      ];
+
+      match = [
+        ["University of Birmingham", "综合认可度好，适合作为主申"],
+        ["University of Leeds", "商科、传媒、管理方向较稳"],
+        ["University of Nottingham", "回国认可度不错，适合主申"]
+      ];
+
+      safe = [
+        ["University of Leicester", "录取相对稳妥，预算压力较低"],
+        ["University of Sussex", "适合保底和就业导向申请"],
+        ["Coventry University", "Top-up背景友好，安全选择"]
+      ];
+
+      strategy = "你的均分较有竞争力，可以采用“高位冲刺 + QS主申 + 稳妥保底”的组合。重点不要只盯冲刺校，必须保留至少2所成功率较高的学校。";
+    } else if (gpa >= 70) {
+      reach = [
+        ["University of Birmingham", "可以作为冲刺，适合背景较完整的学生"],
+        ["University of Leeds", "有机会，但需要看本科背景和专业匹配度"],
+        ["University of Southampton", "QS表现较好，适合作为冲刺"]
+      ];
+
+      match = [
+        ["University of Nottingham", "适合作为主申，认可度较好"],
+        ["University of Sheffield", "QS和录取难度较平衡"],
+        ["Newcastle University", "适合商科、管理、传媒方向"]
+      ];
+
+      safe = [
+        ["Coventry University", "Top-up背景友好，成功率较高"],
+        ["University of Portsmouth", "预算友好，录取相对稳妥"],
+        ["University of Westminster", "伦敦区位优势，适合保底"]
+      ];
+
+      strategy = "你的背景适合走“主申稳定 + 少量冲刺”的路线。不要盲目全部冲QS前100，否则容易出现申请风险。建议用文书和专业匹配度提高成功率。";
+    } else if (gpa >= 60) {
+      reach = [
+        ["University of Sheffield", "可作为高位冲刺，但不建议只申这一档"],
+        ["Newcastle University", "部分专业可以尝试"],
+        ["Queen Mary University of London", "伦敦优势明显，但竞争较高"]
+      ];
+
+      match = [
+        ["Coventry University", "对Top-up和普通背景更友好"],
+        ["University of Portsmouth", "录取相对稳妥，预算压力较低"],
+        ["De Montfort University", "适合保守申请策略"]
+      ];
+
+      safe = [
+        ["University of Greenwich", "伦敦区位，申请难度较低"],
+        ["Birmingham City University", "适合作为安全选择"],
+        ["University of Hertfordshire", "预算和录取相对友好"]
+      ];
+
+      strategy = "你的申请重点应该是“提高录取确定性”。可以保留1-2所冲刺，但核心应放在匹配校和保底校。文书需要解释专业动机和未来规划。";
+    } else {
+      reach = [
+        ["Coventry University", "可以尝试，但需要强化文书和专业匹配"],
+        ["University of Portsmouth", "可作为冲刺选择"],
+        ["De Montfort University", "需要结合具体专业判断"]
+      ];
+
+      match = [
+        ["University of Greenwich", "适合作为主申"],
+        ["Birmingham City University", "录取压力相对低"],
+        ["University of Hertfordshire", "适合预算敏感型学生"]
+      ];
+
+      safe = [
+        ["Pre-master pathway", "建议考虑硕士预科或衔接课程"],
+        ["Lower-risk universities", "优先确保录取，再考虑排名"],
+        ["Case-by-case review", "需要人工进一步评估背景"]
+      ];
+
+      strategy = "你的背景需要更保守的申请策略。不要只看排名，应该优先确保录取，并考虑硕士预科、低风险专业或背景补强方案。";
+    }
+
+    if (topup.includes("是")) {
+      match.push(["Top-up Friendly Options", "建议重点选择对Top-up背景更友好的学校和专业"]);
+      strategy += " 由于你是 Top-up 背景，必须额外关注学校是否接受 Top-up、是否卡本科年限和专业衔接。";
+    }
+
+    if (goal.includes("回国")) {
+      reach.push(["QS-focused strategy", "回国就业更应重视QS排名和国内HR认知"]);
+      strategy += " 如果你未来计划回国就业，QS排名、学校中文知名度和城市认可度会更重要。";
+    }
+    const ielts = Number(document.getElementById("ielts").value);
+    
+    if (topup.includes("是")) {
+      risks.push("Top-up 背景需要重点确认学校是否接受，以及是否要求完整本科年限。");
+    }
+    
+    if (!ielts || ielts < 6.5) {
+      risks.push("IELTS 成绩偏低，部分学校可能要求语言班或更高单项分数。");
+    }
+    
+    if (gpa < 70) {
+      risks.push("GPA 低于 70，冲刺 QS 前100 学校风险较高，建议不要过度激进。");
+    }
+    
+    if (major.includes("Finance") && gpa < 75) {
+      risks.push("Finance 方向竞争较强，低于 75 分时需要准备更强的文书和相关经历。");
+    }
+    
+    if (goal.includes("回国") && gpa < 70) {
+      risks.push("如果目标是回国就业，学校排名和国内认可度需要更谨慎权衡。");
+    }
+    
+    if (risks.length === 0) {
+      risks.push("当前背景风险较低，可以采用冲刺、主申、保底组合申请策略。");
+    }
+
+    renderResults("reachList", reach);
+    renderResults("matchList", match);
+    renderResults("safeList", safe);
+
+    const uniText = university ? `根据你填写的 ${university} 背景、${gpa} 均分、${major} 方向和 ${budget} 预算，` : `根据你填写的 ${gpa} 均分、${major} 方向和 ${budget} 预算，`;
+
+    document.getElementById("summaryText").innerText = uniText + strategy;
+
+    document.getElementById("loadingBox").style.display = "block";
+    document.getElementById("results").style.display = "none";
+    document.getElementById("summaryBox").style.display = "none";
+    document.getElementById("riskBox").style.display = "none";
+    document.getElementById("leadBox").style.display = "none";
+
+    setTimeout(() => {
+      document.getElementById("loadingBar").style.width = "100%";
+    }, 50);
+
+    setTimeout(() => {
+      document.getElementById("loadingBox").style.display = "none";
+      document.getElementById("results").style.display = "grid";
+      document.getElementById("summaryBox").style.display = "block";
+      renderRisks(risks);
+      document.getElementById("riskBox").style.display = "block";
+      document.getElementById("leadBox").style.display = "block";
+
+      document.getElementById("results").scrollIntoView({ behavior: "smooth" });
+    }, 1600);
+  }
+
+  function renderResults(elementId, data) {
+  const box = document.getElementById(elementId);
+  box.innerHTML = "";
+
+  data.forEach(item => {
+    const fit = calculateFitLabel(elementId);
+
+    box.innerHTML += `
+      <div class="uni">
+        <strong>${item[0]}</strong>
+        <small>${item[1]}</small>
+        <div>
+          <span class="fit-badge">
+            ${fit}
+          </span>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function calculateFitLabel(type) {
+  const gpa = Number(document.getElementById("gpa").value);
+  const topup = document.getElementById("topup").value;
+  const ielts = Number(document.getElementById("ielts").value);
+
+  if (type === "reachList") {
+    if (gpa >= 80 && ielts >= 6.5 && !topup.includes("是")) return "AI Fit：可冲刺";
+    return "AI Fit：高风险冲刺";
+  }
+
+  if (type === "matchList") {
+    if (gpa >= 70 && ielts >= 6.5) return "AI Fit：主申推荐";
+    return "AI Fit：中等匹配";
+  }
+
+  if (type === "safeList") {
+    return "AI Fit：稳妥保底";
+  }
+
+  return "AI Fit：需人工复核";
+}
+  function renderRisks(risks) {
+  const box = document.getElementById("riskList");
+  box.innerHTML = "";
+
+  risks.forEach(risk => {
+    box.innerHTML += `
+      <div class="uni">
+        <strong>Risk Point</strong>
+        <small>${risk}</small>
+      </div>
+    `;
+  });
+}
+
+async function submitLead() {
+  const endpoint = "https://formspree.io/f/mbdblnzk";
+
+  const wechat = document.getElementById("wechat").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const intake = document.getElementById("intake").value;
+  const support = document.getElementById("support").value;
+  const notes = document.getElementById("notes").value.trim();
+
+  const university = document.getElementById("university").value.trim();
+  const gpa = document.getElementById("gpa").value.trim();
+  const ielts = document.getElementById("ielts").value.trim();
+  const major = document.getElementById("major").value;
+  const topup = document.getElementById("topup").value;
+  const goal = document.getElementById("goal").value;
+  const budget = document.getElementById("budget").value;
+
+  if (!wechat && !email) {
+    alert("请至少填写微信号或邮箱，方便我们发送完整方案。");
+    return;
+  }
+
+  const payload = {
+    wechat: wechat,
+    email: email,
+    intake: intake,
+    support_needed: support,
+    notes: notes,
+    undergraduate_university: university,
+    gpa: gpa,
+    ielts: ielts,
+    major: major,
+    topup_background: topup,
+    future_goal: goal,
+    budget: budget,
+    source: "Inco AI Website"
+  };
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+      alert("提交成功。我们会根据你的背景进一步复核申请方案。");
+
+      document.getElementById("wechat").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("notes").value = "";
+    } else {
+      alert("提交失败。请稍后再试，或截图结果后直接联系我们。");
+    }
+  } catch (error) {
+    alert("网络错误，提交失败。请检查网络后重试。");
+  }
+}
+
+</script>
+
+</body>
+</html>
